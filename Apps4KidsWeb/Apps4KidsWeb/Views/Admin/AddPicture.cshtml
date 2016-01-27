@@ -1,0 +1,25 @@
+﻿@model Apps4KidsWeb.Models.AddAppViewModel
+
+@{
+    ViewBag.Title = string.Format("Bilder hinzufügen für {0}",Model.AppName);
+    ViewBag.CurrentPage = "App hinzufügen";
+}
+
+<div id="pictures">
+    @Html.Partial("_AppImages", Model)
+</div>
+
+@using (Html.BeginForm("AddPicture", "Admin", FormMethod.Post,
+    new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m=>m.Guid)
+    <input type="file" name="files" id="files"><br>
+    <input type="submit" value="Hinzufügen">
+}
+
+@Html.ActionLink("Fertig", "Summary", new { Guid = Model.Guid})
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+   
+}

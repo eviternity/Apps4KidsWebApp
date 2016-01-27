@@ -1,0 +1,29 @@
+﻿@model Apps4KidsWeb.Models.AddAppViewModel
+
+@using Apps4KidsWeb.Domain
+
+@{
+    IDictionary<int, string> categories = Facade.AppCategories;    
+}
+
+<table>
+    @foreach (KeyValuePair<int, int> item in Model.Categories)
+    {
+        <tr>
+            <td>@categories[item.Value]</td>
+            <td>
+                @Ajax.ActionLink(
+                                        "Entfernen",
+                                        "RemoveCategory",
+                                        "Admin",
+                                        new { guid = Model.Guid, id = item.Key },
+                                        new AjaxOptions
+                                        {
+                                            HttpMethod = "POST",
+                                            InsertionMode = InsertionMode.Replace,
+                                            UpdateTargetId = "categories"
+                                        })</td>
+        </tr>
+    }
+</table>
+

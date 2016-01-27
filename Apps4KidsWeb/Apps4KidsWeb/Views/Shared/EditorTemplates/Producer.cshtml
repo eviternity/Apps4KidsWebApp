@@ -1,0 +1,34 @@
+﻿@model string
+
+@using Apps4KidsWeb.Domain
+
+<div>
+    <input type="text" value="@Model" name="Producer" id="producer" autocomplete="off"/>
+    <div id="producers" class="dropdown"></div>
+</div>
+
+<script type="text/javascript">
+    var producerNames = @(Html.Raw(Json.Encode(Facade.Producers.Values)));
+    $(document).ready(function(){
+        $("#producer").keyup(function (e) {            
+            $("#producers").html("");
+            if ($("#producer").val().length > 0) {
+                for (var i = 0; i < producerNames.length; i++) {
+                    if (producerNames[i].substring(0, $("#producer").val().length).toLowerCase() == $("#producer").val().toLowerCase()) {
+                        $("#producers").append("<div class='dropdownElement'>" +producerNames[i] + "</div>" );                       
+                    }
+                }
+            }
+            $(".dropdownElement").click(function(){
+                $("#producer").val( $(this).html());
+                $("#producers").html("");
+            });
+        });
+        $("input").focusin(function(){
+            $("#producers").html("");
+        });
+       
+    });
+    
+
+</script>

@@ -1,0 +1,31 @@
+﻿@model Apps4KidsWeb.Models.AlterProfileViewModel
+
+@{
+    ViewBag.Title = "Profil bearbeiten";
+    ViewBag.CurrentPage = "Profil bearbeiten";
+}
+<div class="float">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model=> model.ID)
+        @Html.EditorForModel()
+
+        <p>
+            <input type="submit" value="Speichern" />
+        </p>
+ 
+    }
+</div>
+<div class="right">
+    @Html.ActionLink("Passwort ändern","ChangePassword")
+</div>
+<div class="clear"></div>
+<div>
+    @Html.ActionLink("Abbrechen", "Index","Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

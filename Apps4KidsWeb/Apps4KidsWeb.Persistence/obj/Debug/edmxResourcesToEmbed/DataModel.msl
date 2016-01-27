@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Apps4KidsModelStoreContainer" CdmEntityContainer="Apps4KidsEntities">
+    <EntitySetMapping Name="Apps">
+      <EntityTypeMapping TypeName="Apps4KidsModel.App">
+        <MappingFragment StoreEntitySet="App">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Prerequisites" ColumnName="Prerequisites" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProducerID" ColumnName="ProducerID" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="Apps4KidsModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CountryOfOrigins">
+      <EntityTypeMapping TypeName="Apps4KidsModel.CountryOfOrigin">
+        <MappingFragment StoreEntitySet="CountryOfOrigin">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pictures">
+      <EntityTypeMapping TypeName="Apps4KidsModel.Picture">
+        <MappingFragment StoreEntitySet="Picture">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producers">
+      <EntityTypeMapping TypeName="Apps4KidsModel.Producer">
+        <MappingFragment StoreEntitySet="Producer">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recentions">
+      <EntityTypeMapping TypeName="Apps4KidsModel.Recention">
+        <MappingFragment StoreEntitySet="Recention">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="AppID" ColumnName="AppID" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Apps4KidsModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CountryOfOriginID" ColumnName="CountryOfOriginID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="EMail" ColumnName="EMail" />
+          <ScalarProperty Name="Children" ColumnName="Children" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AppCategory" TypeName="Apps4KidsModel.AppCategory" StoreEntitySet="AppCategory">
+      <EndProperty Name="App">
+        <ScalarProperty Name="ID" ColumnName="AppID" />
+      </EndProperty>
+      <EndProperty Name="Category">
+        <ScalarProperty Name="ID" ColumnName="CategoryID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AppPicture" TypeName="Apps4KidsModel.AppPicture" StoreEntitySet="AppPicture">
+      <EndProperty Name="App">
+        <ScalarProperty Name="ID" ColumnName="AppID" />
+      </EndProperty>
+      <EndProperty Name="Picture">
+        <ScalarProperty Name="ID" ColumnName="PictureID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_RegisterUser" FunctionName="Apps4KidsModel.Store.sp_RegisterUser" />
+    <FunctionImportMapping FunctionImportName="sp_Login" FunctionName="Apps4KidsModel.Store.sp_Login">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Apps4KidsModel.sp_Login_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Children" ColumnName="Children" />
+          <ScalarProperty Name="CountryOfOrigin" ColumnName="CountryOfOrigin" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="AppOS">
+      <EntityTypeMapping TypeName="Apps4KidsModel.AppOS">
+        <MappingFragment StoreEntitySet="AppOS">
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="OperatingSystems" TypeName="Apps4KidsModel.OperatingSystems" StoreEntitySet="OperatingSystems">
+      <EndProperty Name="AppOS">
+        <ScalarProperty Name="ID" ColumnName="AppOSID" />
+      </EndProperty>
+      <EndProperty Name="App">
+        <ScalarProperty Name="ID" ColumnName="AppID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="Apps4KidsModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AuthentificationCodes">
+      <EntityTypeMapping TypeName="Apps4KidsModel.AuthentificationCode">
+        <MappingFragment StoreEntitySet="AuthentificationCode">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLocks">
+      <EntityTypeMapping TypeName="Apps4KidsModel.UserLock">
+        <MappingFragment StoreEntitySet="UserLock">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_Authentificate" FunctionName="Apps4KidsModel.Store.sp_Authentificate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Apps4KidsModel.sp_Login_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Children" ColumnName="Children" />
+          <ScalarProperty Name="CountryOfOrigin" ColumnName="CountryOfOrigin" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Recommendations">
+      <EntityTypeMapping TypeName="Apps4KidsModel.Recommendation">
+        <MappingFragment StoreEntitySet="Recommendation">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AppDesignation" ColumnName="AppDesignation" />
+          <ScalarProperty Name="OSID" ColumnName="OSID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChangePasswordCodes">
+      <EntityTypeMapping TypeName="Apps4KidsModel.ChangePasswordCode">
+        <MappingFragment StoreEntitySet="ChangePasswordCode">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_changePassword" FunctionName="Apps4KidsModel.Store.sp_changePassword">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Apps4KidsModel.sp_Login_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Children" ColumnName="Children" />
+          <ScalarProperty Name="CountryOfOrigin" ColumnName="CountryOfOrigin" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_changeUserPassword" FunctionName="Apps4KidsModel.Store.sp_changeUserPassword" />
+    <EntitySetMapping Name="Approveds">
+      <EntityTypeMapping TypeName="Apps4KidsModel.Approved">
+        <MappingFragment StoreEntitySet="Approved">
+          <ScalarProperty Name="RecommendationID" ColumnName="RecommendationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Denieds">
+      <EntityTypeMapping TypeName="Apps4KidsModel.Denied">
+        <MappingFragment StoreEntitySet="Denied">
+          <ScalarProperty Name="RecommendationID" ColumnName="RecommendationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetProducerID" FunctionName="Apps4KidsModel.Store.sp_GetProducerID" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,75 @@
+﻿@model int?
+
+@{
+    Layout = null;
+}
+
+<script type="text/javascript">
+
+    function showRating(rating) {
+        for (i = 1; i < 6; i++) {
+            if (i <= rating) {
+                if ($("#star" + i).hasClass("transparentStar")) {
+                    $("#star" + i).removeClass("transparentStar");
+                }
+                $("#star" + i).addClass("star");
+            }
+            else {
+                if ($("#star" + i).hasClass("star")) {
+                    $("#star" + i).removeClass("star");
+                }
+                $("#star" + i).addClass("transparentStar");
+            }
+        }
+    }
+    
+    $(document).ready(function () {
+        $("#star1").click(function () {
+            $("#Rating").val("1");
+        });
+        $("#star2").click(function () {
+            $("#Rating").val("2");
+        });
+        $("#star3").click(function () {
+            $("#Rating").val("3");
+        });
+        $("#star4").click(function () {
+            $("#Rating").val("4");
+        });
+        $("#star5").click(function () {
+            $("#Rating").val("5");
+        });
+
+        $("#star1").hover(function () {
+            showRating(1);
+        });
+        $("#star2").hover(function () {
+            showRating(2);
+        });
+        $("#star3").hover(function () {
+            showRating(3);
+        });
+        $("#star4").hover(function () {
+            showRating(4);
+        });
+        $("#star5").hover(function () {
+            showRating(5);
+        });
+
+        $("#rating").mouseleave(function () {
+            showRating($("#Rating").val());
+        });
+
+        showRating($("#Rating").val());
+    });
+
+</script>
+
+<div id="rating">
+    <div id="star1" class="transparentStar"></div>
+    <div id="star2" class="transparentStar"></div>
+    <div id="star3" class="transparentStar" ></div>
+    <div id="star4" class="transparentStar" ></div>
+    <div id="star5" class="transparentStar"></div>
+    <input type="hidden" id ="Rating" value ="@Model" name="Rating"/>
+</div>

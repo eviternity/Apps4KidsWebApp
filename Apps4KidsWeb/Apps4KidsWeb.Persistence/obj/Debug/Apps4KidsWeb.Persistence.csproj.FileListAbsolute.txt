@@ -1,0 +1,12 @@
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Persistence\bin\Debug\Apps4KidsWeb.Persistence.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Persistence\bin\Debug\Apps4KidsWeb.Persistence.pdb
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Persistence\obj\Debug\Apps4KidsWeb.Persistence.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Persistence\obj\Debug\Apps4KidsWeb.Persistence.pdb
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Persistence\bin\Debug\Apps4KidsWeb.Persistence.dll.config
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Persistence\bin\Debug\EntityFramework.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Persistence\bin\Debug\EntityFramework.xml
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Persistence\bin\Debug\de\EntityFramework.resources.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Persistence\bin\Debug\EntityFramework.SqlServer.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Persistence\bin\Debug\EntityFramework.SqlServer.xml
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Persistence\bin\Debug\de\EntityFramework.SqlServer.resources.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Persistence\obj\Debug\Apps4KidsWeb.Persistence.csprojResolveAssemblyReference.cache

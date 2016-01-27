@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a1aedfb4012e42329645c656a516ecfa" Name="Diagramm1" ZoomLevel="73">
+        <EntityTypeShape EntityType="Apps4KidsModel.App" Width="1.5" PointX="3.625" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apps4KidsModel.Category" Width="1.5" PointX="1.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apps4KidsModel.CountryOfOrigin" Width="2.125" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apps4KidsModel.Picture" Width="1.5" PointX="3.625" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apps4KidsModel.Producer" Width="1.5" PointX="1.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apps4KidsModel.Recention" Width="1.5" PointX="6" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apps4KidsModel.User" Width="1.5" PointX="8.125" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="Apps4KidsModel.fk_App_Producer" ManuallyRouted="false" />
+        <AssociationConnector Association="Apps4KidsModel.fk_Recention_App" ManuallyRouted="false" />
+        <AssociationConnector Association="Apps4KidsModel.fk_User_CountryOfOrigin" ManuallyRouted="false" />
+        <AssociationConnector Association="Apps4KidsModel.fk_Recention_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Apps4KidsModel.AppCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Apps4KidsModel.AppPicture" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Apps4KidsModel.AppOS" Width="1.5" PointX="3.5" PointY="7.125" />
+        <AssociationConnector Association="Apps4KidsModel.OperatingSystems" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Apps4KidsModel.Admin" Width="1.5" PointX="10.5" PointY="5.75" />
+        <EntityTypeShape EntityType="Apps4KidsModel.AuthentificationCode" Width="1.5" PointX="10.125" PointY="7.375" />
+        <EntityTypeShape EntityType="Apps4KidsModel.UserLock" Width="1.5" PointX="10.5" PointY="4" />
+        <AssociationConnector Association="Apps4KidsModel.fk_Admin_User" />
+        <AssociationConnector Association="Apps4KidsModel.fk_AuthentificationCode_User" />
+        <AssociationConnector Association="Apps4KidsModel.fk_UserLock_User" />
+        <EntityTypeShape EntityType="Apps4KidsModel.Recommendation" Width="1.5" PointX="6" PointY="6.875" />
+        <AssociationConnector Association="Apps4KidsModel.fk_Recommendation_OS" />
+        <AssociationConnector Association="Apps4KidsModel.fk_Recommendation_User" />
+        <EntityTypeShape EntityType="Apps4KidsModel.ChangePasswordCode" Width="1.5" PointX="10.5" PointY="2.25" />
+        <AssociationConnector Association="Apps4KidsModel.fk_ChangePasswordCode_User" />
+        <EntityTypeShape EntityType="Apps4KidsModel.Approved" Width="1.5" PointX="7" PointY="10.875" />
+        <EntityTypeShape EntityType="Apps4KidsModel.Denied" Width="1.5" PointX="5.125" PointY="10.875" />
+        <AssociationConnector Association="Apps4KidsModel.fk_Approved_Recommendation" />
+        <AssociationConnector Association="Apps4KidsModel.fk_Denied_Recommendation" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

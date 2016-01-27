@@ -1,0 +1,26 @@
+﻿@model Apps4KidsWeb.Models.SearchCriteriaViewModel
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm("FilterApps", "View"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div>
+        @Html.EditorForModel()
+    </div>
+    <div>
+        <input type="submit" value="Suchen" />
+    </div>
+    
+    <div class="clear"></div>
+       
+
+    <p>
+    </p>
+    
+}
+
+

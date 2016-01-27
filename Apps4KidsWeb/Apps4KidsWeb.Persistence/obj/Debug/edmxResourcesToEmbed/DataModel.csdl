@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Apps4KidsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Apps4KidsEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Apps" EntityType="Apps4KidsModel.App" />
+    <EntitySet Name="Categories" EntityType="Apps4KidsModel.Category" />
+    <EntitySet Name="CountryOfOrigins" EntityType="Apps4KidsModel.CountryOfOrigin" />
+    <EntitySet Name="Pictures" EntityType="Apps4KidsModel.Picture" />
+    <EntitySet Name="Producers" EntityType="Apps4KidsModel.Producer" />
+    <EntitySet Name="Recentions" EntityType="Apps4KidsModel.Recention" />
+    <EntitySet Name="Users" EntityType="Apps4KidsModel.User" />
+    <AssociationSet Name="fk_App_Producer" Association="Apps4KidsModel.fk_App_Producer">
+      <End Role="Producer" EntitySet="Producers" />
+      <End Role="App" EntitySet="Apps" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Recention_App" Association="Apps4KidsModel.fk_Recention_App">
+      <End Role="App" EntitySet="Apps" />
+      <End Role="Recention" EntitySet="Recentions" />
+    </AssociationSet>
+    <AssociationSet Name="fk_User_CountryOfOrigin" Association="Apps4KidsModel.fk_User_CountryOfOrigin">
+      <End Role="CountryOfOrigin" EntitySet="CountryOfOrigins" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Recention_User" Association="Apps4KidsModel.fk_Recention_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Recention" EntitySet="Recentions" />
+    </AssociationSet>
+    <AssociationSet Name="AppCategory" Association="Apps4KidsModel.AppCategory">
+      <End Role="App" EntitySet="Apps" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="AppPicture" Association="Apps4KidsModel.AppPicture">
+      <End Role="App" EntitySet="Apps" />
+      <End Role="Picture" EntitySet="Pictures" />
+    </AssociationSet>
+    <FunctionImport Name="sp_RegisterUser">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="Children" Mode="In" Type="String" />
+      <Parameter Name="CountryOfOriginID" Mode="In" Type="Int32" />
+      <Parameter Name="AuthentificationCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Login" ReturnType="Collection(Apps4KidsModel.sp_Login_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="AppOS" EntityType="Apps4KidsModel.AppOS" />
+    <AssociationSet Name="OperatingSystems" Association="Apps4KidsModel.OperatingSystems">
+      <End Role="App" EntitySet="Apps" />
+      <End Role="AppOS" EntitySet="AppOS" />
+    </AssociationSet>
+    <EntitySet Name="Admins" EntityType="Apps4KidsModel.Admin" />
+    <EntitySet Name="AuthentificationCodes" EntityType="Apps4KidsModel.AuthentificationCode" />
+    <EntitySet Name="UserLocks" EntityType="Apps4KidsModel.UserLock" />
+    <AssociationSet Name="fk_Admin_User" Association="Apps4KidsModel.fk_Admin_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Admin" EntitySet="Admins" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AuthentificationCode_User" Association="Apps4KidsModel.fk_AuthentificationCode_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="AuthentificationCode" EntitySet="AuthentificationCodes" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserLock_User" Association="Apps4KidsModel.fk_UserLock_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserLock" EntitySet="UserLocks" />
+    </AssociationSet>
+    <FunctionImport Name="sp_Authentificate" ReturnType="Collection(Apps4KidsModel.sp_Login_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="AuthentificationCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Recommendations" EntityType="Apps4KidsModel.Recommendation" />
+    <AssociationSet Name="fk_Recommendation_OS" Association="Apps4KidsModel.fk_Recommendation_OS">
+      <End Role="AppOS" EntitySet="AppOS" />
+      <End Role="Recommendation" EntitySet="Recommendations" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Recommendation_User" Association="Apps4KidsModel.fk_Recommendation_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Recommendation" EntitySet="Recommendations" />
+    </AssociationSet>
+    <EntitySet Name="ChangePasswordCodes" EntityType="Apps4KidsModel.ChangePasswordCode" />
+    <AssociationSet Name="fk_ChangePasswordCode_User" Association="Apps4KidsModel.fk_ChangePasswordCode_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ChangePasswordCode" EntitySet="ChangePasswordCodes" />
+    </AssociationSet>
+    <FunctionImport Name="sp_changePassword" ReturnType="Collection(Apps4KidsModel.sp_Login_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="ChangePasswordCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_changeUserPassword">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="NewPasswort" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Approveds" EntityType="Apps4KidsModel.Approved" />
+    <EntitySet Name="Denieds" EntityType="Apps4KidsModel.Denied" />
+    <AssociationSet Name="fk_Approved_Recommendation" Association="Apps4KidsModel.fk_Approved_Recommendation">
+      <End Role="Recommendation" EntitySet="Recommendations" />
+      <End Role="Approved" EntitySet="Approveds" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Denied_Recommendation" Association="Apps4KidsModel.fk_Denied_Recommendation">
+      <End Role="Recommendation" EntitySet="Recommendations" />
+      <End Role="Denied" EntitySet="Denieds" />
+    </AssociationSet>
+    <FunctionImport Name="sp_GetProducerID">
+      <Parameter Name="ProducerName" Mode="In" Type="String" />
+      <Parameter Name="ID" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="App">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ProducerID" Type="Int32" Nullable="false" />
+    <Property Name="Designation" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="URL" Type="String" MaxLength="50" Unicode="true" FixedLength="false" Nullable="false" />
+    <NavigationProperty Name="Producer" Relationship="Apps4KidsModel.fk_App_Producer" FromRole="App" ToRole="Producer" />
+    <NavigationProperty Name="Recentions" Relationship="Apps4KidsModel.fk_Recention_App" FromRole="App" ToRole="Recention" />
+    <NavigationProperty Name="Categories" Relationship="Apps4KidsModel.AppCategory" FromRole="App" ToRole="Category" />
+    <NavigationProperty Name="Pictures" Relationship="Apps4KidsModel.AppPicture" FromRole="App" ToRole="Picture" />
+    <Property Type="Decimal" Name="Price" Nullable="false" Precision="5" Scale="2" />
+    <Property Type="String" Name="Prerequisites" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OperatingSystems" Relationship="Apps4KidsModel.OperatingSystems" FromRole="App" ToRole="AppOS" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Designation" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Apps" Relationship="Apps4KidsModel.AppCategory" FromRole="Category" ToRole="App" />
+  </EntityType>
+  <EntityType Name="CountryOfOrigin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Designation" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Users" Relationship="Apps4KidsModel.fk_User_CountryOfOrigin" FromRole="CountryOfOrigin" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Apps" Relationship="Apps4KidsModel.AppPicture" FromRole="Picture" ToRole="App" />
+  </EntityType>
+  <EntityType Name="Producer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Designation" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Apps" Relationship="Apps4KidsModel.fk_App_Producer" FromRole="Producer" ToRole="App" />
+  </EntityType>
+  <EntityType Name="Recention">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="AppID" Type="Int32" Nullable="false" />
+    <Property Name="Rating" Type="Int32" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="App" Relationship="Apps4KidsModel.fk_Recention_App" FromRole="Recention" ToRole="App" />
+    <NavigationProperty Name="User" Relationship="Apps4KidsModel.fk_Recention_User" FromRole="Recention" ToRole="User" />
+    <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryOfOriginID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="EMail" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Children" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="CountryOfOrigin" Relationship="Apps4KidsModel.fk_User_CountryOfOrigin" FromRole="User" ToRole="CountryOfOrigin" />
+    <NavigationProperty Name="Recentions" Relationship="Apps4KidsModel.fk_Recention_User" FromRole="User" ToRole="Recention" />
+    <Property Type="Binary" Name="Password" Nullable="false" MaxLength="512" FixedLength="false" />
+    <NavigationProperty Name="Admin" Relationship="Apps4KidsModel.fk_Admin_User" FromRole="User" ToRole="Admin" />
+    <NavigationProperty Name="AuthentificationCode" Relationship="Apps4KidsModel.fk_AuthentificationCode_User" FromRole="User" ToRole="AuthentificationCode" />
+    <NavigationProperty Name="UserLock" Relationship="Apps4KidsModel.fk_UserLock_User" FromRole="User" ToRole="UserLock" />
+    <NavigationProperty Name="Recommendations" Relationship="Apps4KidsModel.fk_Recommendation_User" FromRole="User" ToRole="Recommendation" />
+    <NavigationProperty Name="ChangePasswordCode" Relationship="Apps4KidsModel.fk_ChangePasswordCode_User" FromRole="User" ToRole="ChangePasswordCode" />
+  </EntityType>
+  <Association Name="fk_App_Producer">
+    <End Role="Producer" Type="Apps4KidsModel.Producer" Multiplicity="1" />
+    <End Role="App" Type="Apps4KidsModel.App" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="App">
+        <PropertyRef Name="ProducerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Recention_App">
+    <End Role="App" Type="Apps4KidsModel.App" Multiplicity="1" />
+    <End Role="Recention" Type="Apps4KidsModel.Recention" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="App">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Recention">
+        <PropertyRef Name="AppID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_User_CountryOfOrigin">
+    <End Role="CountryOfOrigin" Type="Apps4KidsModel.CountryOfOrigin" Multiplicity="1" />
+    <End Role="User" Type="Apps4KidsModel.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryOfOrigin">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="CountryOfOriginID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Recention_User">
+    <End Role="User" Type="Apps4KidsModel.User" Multiplicity="1" />
+    <End Role="Recention" Type="Apps4KidsModel.Recention" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Recention">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AppCategory">
+    <End Role="App" Type="Apps4KidsModel.App" Multiplicity="*" />
+    <End Role="Category" Type="Apps4KidsModel.Category" Multiplicity="*" />
+  </Association>
+  <Association Name="AppPicture">
+    <End Role="App" Type="Apps4KidsModel.App" Multiplicity="*" />
+    <End Role="Picture" Type="Apps4KidsModel.Picture" Multiplicity="*" />
+  </Association>
+  <ComplexType Name="sp_Login_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Children" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="CountryOfOrigin" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="IsAdmin" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="AppOS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Designation" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Apps" Relationship="Apps4KidsModel.OperatingSystems" FromRole="AppOS" ToRole="App" />
+    <NavigationProperty Name="Recommendations" Relationship="Apps4KidsModel.fk_Recommendation_OS" FromRole="AppOS" ToRole="Recommendation" />
+  </EntityType>
+  <Association Name="OperatingSystems">
+    <End Type="Apps4KidsModel.App" Role="App" Multiplicity="*" />
+    <End Type="Apps4KidsModel.AppOS" Role="AppOS" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Apps4KidsModel.fk_Admin_User" FromRole="Admin" ToRole="User" />
+  </EntityType>
+  <EntityType Name="AuthentificationCode">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User" Relationship="Apps4KidsModel.fk_AuthentificationCode_User" FromRole="AuthentificationCode" ToRole="User" />
+  </EntityType>
+  <EntityType Name="UserLock">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Apps4KidsModel.fk_UserLock_User" FromRole="UserLock" ToRole="User" />
+  </EntityType>
+  <Association Name="fk_Admin_User">
+    <End Type="Apps4KidsModel.User" Role="User" Multiplicity="1" />
+    <End Type="Apps4KidsModel.Admin" Role="Admin" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AuthentificationCode_User">
+    <End Type="Apps4KidsModel.User" Role="User" Multiplicity="1" />
+    <End Type="Apps4KidsModel.AuthentificationCode" Role="AuthentificationCode" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AuthentificationCode">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserLock_User">
+    <End Type="Apps4KidsModel.User" Role="User" Multiplicity="1" />
+    <End Type="Apps4KidsModel.UserLock" Role="UserLock" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserLock">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Recommendation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="Int32" Name="OSID" Nullable="false" />
+    <Property Type="String" Name="AppDesignation" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AppOS" Relationship="Apps4KidsModel.fk_Recommendation_OS" FromRole="Recommendation" ToRole="AppOS" />
+    <NavigationProperty Name="User" Relationship="Apps4KidsModel.fk_Recommendation_User" FromRole="Recommendation" ToRole="User" />
+    <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Approved" Relationship="Apps4KidsModel.fk_Approved_Recommendation" FromRole="Recommendation" ToRole="Approved" />
+    <NavigationProperty Name="Denied" Relationship="Apps4KidsModel.fk_Denied_Recommendation" FromRole="Recommendation" ToRole="Denied" />
+  </EntityType>
+  <Association Name="fk_Recommendation_OS">
+    <End Type="Apps4KidsModel.AppOS" Role="AppOS" Multiplicity="1" />
+    <End Type="Apps4KidsModel.Recommendation" Role="Recommendation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppOS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Recommendation">
+        <PropertyRef Name="OSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Recommendation_User">
+    <End Type="Apps4KidsModel.User" Role="User" Multiplicity="1" />
+    <End Type="Apps4KidsModel.Recommendation" Role="Recommendation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Recommendation">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ChangePasswordCode">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User" Relationship="Apps4KidsModel.fk_ChangePasswordCode_User" FromRole="ChangePasswordCode" ToRole="User" />
+  </EntityType>
+  <Association Name="fk_ChangePasswordCode_User">
+    <End Type="Apps4KidsModel.User" Role="User" Multiplicity="1" />
+    <End Type="Apps4KidsModel.ChangePasswordCode" Role="ChangePasswordCode" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ChangePasswordCode">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Approved">
+    <Key>
+      <PropertyRef Name="RecommendationID" />
+    </Key>
+    <Property Type="Int32" Name="RecommendationID" Nullable="false" />
+    <NavigationProperty Name="Recommendation" Relationship="Apps4KidsModel.fk_Approved_Recommendation" FromRole="Approved" ToRole="Recommendation" />
+  </EntityType>
+  <EntityType Name="Denied">
+    <Key>
+      <PropertyRef Name="RecommendationID" />
+    </Key>
+    <Property Type="Int32" Name="RecommendationID" Nullable="false" />
+    <NavigationProperty Name="Recommendation" Relationship="Apps4KidsModel.fk_Denied_Recommendation" FromRole="Denied" ToRole="Recommendation" />
+  </EntityType>
+  <Association Name="fk_Approved_Recommendation">
+    <End Type="Apps4KidsModel.Recommendation" Role="Recommendation" Multiplicity="1" />
+    <End Type="Apps4KidsModel.Approved" Role="Approved" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Recommendation">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Approved">
+        <PropertyRef Name="RecommendationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Denied_Recommendation">
+    <End Type="Apps4KidsModel.Recommendation" Role="Recommendation" Multiplicity="1" />
+    <End Type="Apps4KidsModel.Denied" Role="Denied" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Recommendation">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Denied">
+        <PropertyRef Name="RecommendationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

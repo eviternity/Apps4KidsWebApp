@@ -1,0 +1,79 @@
+﻿@model Apps4KidsWeb.Models.AddAppViewModel
+
+@using Apps4KidsWeb.Domain
+
+@{
+    ViewBag.Title = string.Format("Zusammenfassung für {0}", Model.AppName);
+    ViewBag.CurrentPage = "App hinzufügen";
+
+    var allcategories = Facade.AppCategories;
+    var categories = string.Join(", ", Model.Categories.Values.Select(c => allcategories[c]));
+    var allos = Facade.OperatingSystems;
+    var operatingSystems = string.Join(", ", Model.OperatingSystems.Values.Select(c => allos[c]));
+    bool visible = true;
+    
+}
+
+<div class="left">
+    <div id="slider">
+        @foreach (var item in Model.Images.Keys)
+        {
+            <img src="@Url.Action("GetAppPicture", "Admin", new { Guid = Model.Guid, id = item })" width="300" style="display:@(visible ? "block" : "none");"/>
+            visible = false;
+        }
+    </div>
+</div>
+
+<table class="float">
+    <tr>
+        <th>@Html.LabelFor(m => m.AppName)</th>
+        <td>@Html.DisplayFor(m => m.AppName)</td>
+    </tr>
+    <tr>
+        <th>Kategorien</th>
+        <td>@categories</td>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor(m=> m.Producer)</th>
+        <td>@Html.DisplayFor(m=> m.Producer)</td>
+    </tr>
+    <tr>
+        <th>Betriebssysteme</th>
+        <td>@operatingSystems</td>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.Prerequisites)</th>
+        <td>@Html.DisplayFor(m => m.Prerequisites)</td>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.Price)</th>
+        <td>@(Model.Price == 0 ? "kostenlos" : Model.Price.ToString(".00€"))</td>
+    </tr>
+
+
+</table>
+
+<div class="clear"></div>
+<br />
+<table>
+    <tr>
+        <th>@Html.LabelFor(m => m.Description)</th>
+        <td>@Html.DisplayFor(m => m.Description)</td>
+    </tr>
+</table>
+<p>
+    @Html.ActionLink("Speichern", "SaveApp", "Admin", new { Guid = Model.Guid }, null)
+</p>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#slider').cycle({
+                fx: 'fade',
+                timeout: 800,
+                easing: 'easeInOutBack'
+            });
+        });
+    </script>
+}
+

@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apps4KidsWeb", "Apps4KidsWeb\Apps4KidsWeb.csproj", "{17B52554-63DA-4483-B6E8-72A471C5D2D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apps4KidsWeb.Tests", "Apps4KidsWeb.Tests\Apps4KidsWeb.Tests.csproj", "{634D0C50-A9A9-4FF1-85D9-ACEFDFEE4F51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apps4KidsWeb.Domain", "Apps4KidsWeb.Domain\Apps4KidsWeb.Domain.csproj", "{7A0B2925-CF92-4CFC-8C95-2065BF33B4EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apps4KidsWeb.Persistence", "Apps4KidsWeb.Persistence\Apps4KidsWeb.Persistence.csproj", "{7C64F2C9-AC51-4120-BA00-DB850519FEC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apps4KidsWeb.Domain.UnitTests", "Apps4KidsWeb.Domain.UnitTests\Apps4KidsWeb.Domain.UnitTests.csproj", "{C258BDB5-F4D3-45A2-A94B-3DD6367FE513}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apps4KidsWeb.Domain.Email", "Apps4KidsWeb.Domain.Email\Apps4KidsWeb.Domain.Email.csproj", "{F51C4527-2780-4093-A16A-5C3025EBD7B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17B52554-63DA-4483-B6E8-72A471C5D2D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17B52554-63DA-4483-B6E8-72A471C5D2D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17B52554-63DA-4483-B6E8-72A471C5D2D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17B52554-63DA-4483-B6E8-72A471C5D2D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{634D0C50-A9A9-4FF1-85D9-ACEFDFEE4F51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{634D0C50-A9A9-4FF1-85D9-ACEFDFEE4F51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{634D0C50-A9A9-4FF1-85D9-ACEFDFEE4F51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{634D0C50-A9A9-4FF1-85D9-ACEFDFEE4F51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A0B2925-CF92-4CFC-8C95-2065BF33B4EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A0B2925-CF92-4CFC-8C95-2065BF33B4EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A0B2925-CF92-4CFC-8C95-2065BF33B4EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A0B2925-CF92-4CFC-8C95-2065BF33B4EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C64F2C9-AC51-4120-BA00-DB850519FEC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C64F2C9-AC51-4120-BA00-DB850519FEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C64F2C9-AC51-4120-BA00-DB850519FEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C64F2C9-AC51-4120-BA00-DB850519FEC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C258BDB5-F4D3-45A2-A94B-3DD6367FE513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C258BDB5-F4D3-45A2-A94B-3DD6367FE513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C258BDB5-F4D3-45A2-A94B-3DD6367FE513}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C258BDB5-F4D3-45A2-A94B-3DD6367FE513}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F51C4527-2780-4093-A16A-5C3025EBD7B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F51C4527-2780-4093-A16A-5C3025EBD7B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F51C4527-2780-4093-A16A-5C3025EBD7B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F51C4527-2780-4093-A16A-5C3025EBD7B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

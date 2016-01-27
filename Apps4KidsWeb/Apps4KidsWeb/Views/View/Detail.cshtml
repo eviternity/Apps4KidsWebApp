@@ -1,0 +1,133 @@
+﻿@model Apps4KidsWeb.Domain.IApp
+@using Apps4KidsWeb.Domain
+@{
+    ViewBag.Title = "Details zu " + Model.Name;
+    ViewBag.CurrentPage = "Apps";
+    bool visible = true;
+    bool canWriteRecention = User.Identity.IsAuthenticated && !Model.Recentions.Select(r => r.UserID).Contains(Facade.GetUser(User.Identity.Name).ID);
+}
+<div class="splitContainer">
+    <div class="left">
+        <div id="slider">
+            @foreach (var item in Model.ImageIds)
+            {
+                <img src="@Url.Action("GetPicture", "Picture", new { id = item })" style="display:@(visible ? "block" : "none");" />
+                visible = false;
+            }
+        </div>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>@Html.Label("", "Name")</th>
+                <td>@Html.DisplayFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <th>@Html.Label("", "Hersteller")</th>
+                <td>@Html.DisplayFor(model => model.Producer)</td>
+            </tr>
+            <tr>
+                <th>@Html.Label("", "Betriebssystem(e)")</th>
+                <td>@Html.DisplayFor(model => model.AppOS)</td>
+            </tr>
+            <tr>
+                <th>@Html.Label("", "technische Bedingungen")</th>
+                <td>@Html.DisplayFor(model => model.Prerequisites)</td>
+            </tr>
+            <tr>
+                <th>@Html.Label("", "Durchschnittliche Bewertung")</th>
+                <td>@Html.DisplayFor(model => model.AverageRating, "AverageRating")</td>
+            </tr>
+            <tr>
+                <th>@Html.Label("", "Bewertungen")</th>
+                <td>@Html.DisplayFor(model => model.Ratings)</td>
+            </tr>
+            <tr>
+                <th>@Html.Label("", "Preis")</th>
+                <td>@(Model.Price == 0 ? "kostenlos" : Model.Price.ToString(".00€"))</td>
+            </tr>
+            <tr>
+                <th>@Html.Label("", "Kategorie(n)")</th>
+                <td>@string.Join(", ", Model.Categories.Select(c => c.Name))</td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="clear"></div>
+    <br />
+    <table>
+        <tr>
+            <th>@Html.Label("", "Beschreibung")</th>
+            <td>@Html.DisplayFor(model => model.Description)</td>
+        </tr>
+    </table>
+    <br />
+    @if (canWriteRecention)
+    {
+        @Html.ActionLink("Bewerten", "WriteRecention/" + Model.ID, "Recention")
+    }
+    else if (User.Identity.IsAuthenticated)
+    {
+        <p>Sie haben diese App bereits bewertet.</p>
+    }
+    else
+    {
+        <p>Um eine Bewertung abzugeben müssen Sie sich anmelden.</p>
+    }
+
+</div>
+<h4>Bewertungen</h4>
+@Ajax.ActionLink("Nach Datum sortieren", "OrderByDate", new { id = Model.ID }, new AjaxOptions()
+        {
+            HttpMethod = "POST",
+            UpdateTargetId = "recentions",
+            InsertionMode = InsertionMode.Replace,
+            OnComplete = "activateDate()"
+
+        })
+    @Ajax.ActionLink("Nach Bewertung sortieren", "OrderByRating", new { id = Model.ID }, new AjaxOptions()
+        {
+            HttpMethod = "POST",
+            UpdateTargetId = "recentions",
+            InsertionMode = InsertionMode.Replace,
+            OnComplete = "activateRating"
+        })
+<div id="recentions">
+   @Html.Partial("_Recentions",Model.Recentions.OrderBy(r=> r.Date))
+</div>
+@section Scripts
+    {
+    @if (Model.ImageIds.Count() > 1)
+    {
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                $('#slider').cycle({
+                    fx: 'fade',
+                    timeout: 800,
+                    easing: 'easeInOutBack'
+                });
+            });
+
+            function activateDate()
+            {
+                if ($("a[href*=OrderByRating]").hasClass("active")) {
+                    $("a[href*=OrderByRating]").removeClass("active");
+                }
+                $("a[href*=OrderByDate]").addClass("active");
+            }
+
+            function activateRating() {
+                if ($("a[href*=OrderByDate]").hasClass("active")) {
+                    $("a[href*=OrderByDate]").removeClass("active");
+                }
+                $("a[href*=OrderByRating]").addClass("active");
+            }
+
+        </script>
+    }
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+

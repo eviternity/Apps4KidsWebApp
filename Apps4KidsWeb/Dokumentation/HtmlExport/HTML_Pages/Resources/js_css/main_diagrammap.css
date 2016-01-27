@@ -1,0 +1,115 @@
+body {
+	font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 14px;
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+	border: none;
+	overflow: hidden;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+.header {
+	font-size: 120%;
+	color: #F2F2F2;
+	background: #6b6b6b;
+	font-family: Geneva, sans-serif;
+	text-shadow: 1px 1px 1px #333;
+	font-weight: bold;
+	white-space: nowrap;
+	position: fixed;
+	left: 0;
+	top: 0;
+	padding: 5px;
+	padding-left: 15px;
+	width: 100%;
+	z-index: 999;
+}
+
+nav {
+	background: #F2F2F2 !important;
+}
+
+.footer {
+	text-shadow: 1px 1px 1px #999;
+	font-size: 87.5%;
+	color: #F2F2F2;
+	background: #6b6b6b;
+	white-space: nowrap;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	z-index: 999;
+	border-top: solid #A2AEB1 1px;
+}
+
+	.footer div {
+		color: inherit;
+		float: right;
+		text-align: right;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		padding: 5px;
+		padding-right: 15px; /*width:100%;*/ /* enables ellipsis */
+	}
+
+	.footer a {
+		padding: inherit;
+		color: inherit;
+		text-decoration: none;
+		padding-left: 3px;
+		padding-right: 2px;
+		margin-left: 2px;
+		margin-right: 3px;
+	}
+
+		.footer a:hover, a:active {
+			text-decoration: underline;
+			text-shadow: 1px 1px 1px #EEE;
+		}
+
+	.footer img {
+		padding-left: 5px;
+		padding-right: 5px;
+		margin-bottom: -2px;
+		height: 11px;
+	}
+
+.content {
+	margin-top: 27px;
+	margin-bottom: 20px;
+	height: 350px;
+}
+
+.toggleNavigation {
+	position: fixed;
+	left: 405px;
+	top: 27px;
+	height: 20px;
+	width: 62px;
+	background: #6b6b6b;
+	z-index: 99;
+	cursor: pointer;
+	border-bottom-right-radius: 6px;
+}
+
+.navigationSearch {
+	width: calc(100% - 22px);
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	height: 15px;
+	z-index: 1;
+	padding-left: 20px;
+	background: #FEFFFD;
+	border: solid #A2AEB1 1px;
+}
+
+.toolTip {
+	max-width: 270px;
+	max-height: 200px;
+}

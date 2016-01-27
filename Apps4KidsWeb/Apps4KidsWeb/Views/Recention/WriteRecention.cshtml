@@ -1,0 +1,24 @@
+﻿@model Apps4KidsWeb.Models.RecentionViewModel
+
+@{
+    ViewBag.Title = "App bewerten";
+}
+
+<p>@Html.DisplayFor(model=>model.AppName)</p>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model=> model.UserID)
+    @Html.HiddenFor(model=> model.AppID)
+    @Html.HiddenFor(model=> model.AppName)
+
+        @Html.EditorForModel()
+
+        <p>
+            <input type="submit" value="Bewertung abschicken" />
+        </p>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

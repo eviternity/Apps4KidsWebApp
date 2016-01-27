@@ -1,0 +1,28 @@
+﻿@model Apps4KidsWeb.Models.AddAppViewModel
+
+@using Apps4KidsWeb.Domain
+
+@{
+    IDictionary<int, string> categories = Facade.AppCategories;    
+}
+
+<table>
+    @foreach (int item in Model.Images.Keys)
+    {
+        <tr>
+            <td><img src="@Url.Action("GetAppPicture", "Admin", new { Guid = Model.Guid, id=item })" width="300" /></td>
+            <td>
+                @Ajax.ActionLink(
+                                        "Entfernen",
+                                        "RemovePicture",
+                                        "Admin",
+                                        new { guid = Model.Guid, id = item },
+                                        new AjaxOptions
+                                        {
+                                            HttpMethod = "POST",
+                                            InsertionMode = InsertionMode.Replace,
+                                            UpdateTargetId = "pictures"
+                                        })</td>
+        </tr>
+    }
+</table>

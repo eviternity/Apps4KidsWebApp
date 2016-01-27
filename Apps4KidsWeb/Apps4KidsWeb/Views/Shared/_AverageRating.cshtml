@@ -1,0 +1,10 @@
+﻿@model double?
+
+@{
+    double width = Model.Value / 5 * 100;
+    string value = Model == 0 ? "keine Bewertung" : string.Format("{0:0.##} Sterne", Model.Value);
+    
+}
+<div class="averageRating">
+    <div style="width:@(width)px;">@value</div>
+</div>

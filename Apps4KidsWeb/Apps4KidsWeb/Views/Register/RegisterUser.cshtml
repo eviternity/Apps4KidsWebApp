@@ -1,0 +1,36 @@
+﻿@model Apps4KidsWeb.Models.RegistrationViewModel
+
+@{
+    ViewBag.Title = "Registrieren";
+    ViewBag.CurrentPage = "Registrieren";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    @Html.EditorForModel()
+    <br />
+    <table>
+        <tr>
+            <td>Ich akzeptiere die <a class="title" href="http://www.eltern.de/service/agb.html" target="_blank">AGBs</a> von eltern.de</td>
+            <td class="editor-field">
+               @Html.EditorFor(m=>m.TermsAccepted)
+            </td>
+            <td class="editor-validation">@Html.ValidationMessageFor(m => m.TermsAccepted)</td>
+        </tr>
+    </table>
+    <p>
+        <input type="submit" value="Registrierung abschicken" />
+    </p>
+    
+}
+
+<div>
+    @Html.ActionLink("Abbrechen", "Index", "Home")
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,9 @@
+﻿@model int
+
+@using Apps4KidsWeb.Domain
+
+@{
+    IUser user = Facade.GetUser(Model.ToString());   
+ }
+
+<span>@user.FirstName @user.Lastname</span>

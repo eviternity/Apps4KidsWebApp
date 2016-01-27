@@ -1,0 +1,16 @@
+﻿@model int?
+
+@using System.Collections.Generic
+@using Apps4KidsWeb.Domain
+
+
+@{
+    List<SelectListItem> list = new List<SelectListItem>();
+    foreach (var item in Facade.CountriesOfOrigin)
+    {
+        list.Add(new SelectListItem() { Text = item.Value, Value = item.Key.ToString(), Selected = Model.HasValue && Model.Value == item.Key});
+    }
+}
+
+@Html.DropDownList("", list)
+

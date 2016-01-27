@@ -1,0 +1,17 @@
+﻿@model int?
+
+@using System.Collections.Generic
+@using Apps4KidsWeb.Domain
+
+
+@{
+    List<SelectListItem> list = new List<SelectListItem>();
+    list.Add(new SelectListItem() { Text = "<Betriebssystem>", Value= "0"});
+    foreach (var item in Facade.OperatingSystems)
+    {
+        list.Add(new SelectListItem() { Text = item.Value, Value = item.Key.ToString() });
+    }
+}
+
+@Html.DropDownList("", list)
+

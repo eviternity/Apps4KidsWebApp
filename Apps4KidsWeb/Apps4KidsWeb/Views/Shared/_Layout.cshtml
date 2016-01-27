@@ -1,0 +1,87 @@
+﻿@using Apps4KidsWeb.Domain
+@{
+    bool loggedIn = User.Identity.IsAuthenticated;
+    bool isAdmin = false;
+    if (loggedIn)
+    {
+        isAdmin = Facade.GetUser(User.Identity.Name).IsAdmin;
+    }
+    string currentpage = ViewBag.CurrentPage;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Apps4Kids - @ViewBag.Title</title>
+    @RenderSection("Styles", false)
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/modernizr")
+    <link type="text/css" rel="stylesheet" href="~/Content/Styles/basis.css" />
+
+</head>
+<body>
+    <div id="wrapper">
+        <a class="title" href="@Url.Action("Index", "Home")">
+            <div class="Titlebar">
+                <img src="~/Content/Images/TitleImage.png" />
+                <h1>Apps4Kids</h1>
+                <div class="clear"></div>
+            </div>
+        </a>
+        <div class="MenuBar">
+            <ul>
+                <li>@Html.ActionLink("Apps", "ViewApps", "View", null, new { @class = currentpage == "Apps" ? "active" : "" })</li>
+                @if (loggedIn)
+                {
+                    <li>@Html.ActionLink("Empfehlung verfassen", "RecommendApp", "Recommendation", null, new { @class = currentpage == "Empfehlung verfassen" ? "active" : "" })</li>
+                    <li>@Html.ActionLink("Profil bearbeiten", "AlterProfile", "Profile", null, new { @class = currentpage == "Profil bearbeiten" ? "active" : "" })</li>
+                    if (isAdmin)
+                    {
+                    <li>@Html.ActionLink("App Empfehlungen einsehen", "ViewAppRecommendations", "Admin", null, new { @class = currentpage == "App Empfehlungen einsehen" ? "active" : "" })</li>
+                    <li>@Html.ActionLink("App hinzufügen", "AddApp", "Admin", null, new { @class = currentpage == "App hinzufügen" ? "active" : "" })</li>
+                    }
+                    <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+                   
+                }
+                else
+                {
+                    <li>@Html.ActionLink("Login", "Login", "Login", null, new { @class = currentpage == "Login" ? "active" : "" })</li>
+                    <li>@Html.ActionLink("Registrieren", "RegisterUser", "Register", null, new { @class = currentpage == "Registrieren" ? "active" : "" })</li>
+                }
+
+            </ul>
+        </div>
+        <div class="clear"></div>
+        @if (TempData["Message"] != null)
+        {
+            <p class="message">@TempData["Message"]</p>
+            TempData["Message"] = null;
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <p class="errorMessage">@TempData["ErrorMessage"]</p>
+            TempData["ErrorMessage"] = null;
+        }
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <p class="errorMessage">@ViewBag.ErrorMessage</p>
+        }
+        <div class="content">
+            <h2>@ViewBag.Title</h2>
+            @RenderBody()
+        </div>
+        <hr />
+        <div class="footer">
+            <a href="http://www.eltern.de/service/impressum.html" target="_blank">Impressum</a>
+            <a href="http://www.eltern.de/kontakt/kontakt-redaktion.html" target="_blank">Kontakt</a>
+            <a href="http://www.eltern.de/service/agb.html" target="_blank">AGBs</a>
+        </div>
+    </div>
+    
+    @RenderSection("Scripts", false)
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Apps4KidsWeb.Models.RecommendationViewModel>
+
+@{
+    ViewBag.Title = "App Empfehlungen einsehen";
+    ViewBag.CurrentPage = "App Empfehlungen einsehen";
+}
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AppName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OperatingSystem)
+        </th>
+        <th>
+            Autor
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OperatingSystem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID,"UserName")
+        </td>
+        <td>
+            @Html.ActionLink("Übernehmen", "AcceptRecommendation", new { id=item.ID })
+            @Html.ActionLink("Ablehnen", "RefuseRecommendation", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,14 @@
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\bin\Debug\Apps4KidsWeb.Domain.UnitTests.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\bin\Debug\Apps4KidsWeb.Domain.UnitTests.pdb
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\bin\Debug\Apps4KidsWeb.Domain.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\bin\Debug\Apps4KidsWeb.Persistence.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\bin\Debug\EntityFramework.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\bin\Debug\Apps4KidsWeb.Domain.pdb
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\bin\Debug\Apps4KidsWeb.Persistence.pdb
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\bin\Debug\EntityFramework.xml
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\bin\Debug\de\EntityFramework.resources.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\obj\Debug\Apps4KidsWeb.Domain.UnitTests.csprojResolveAssemblyReference.cache
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\obj\Debug\Apps4KidsWeb.Domain.UnitTests.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\obj\Debug\Apps4KidsWeb.Domain.UnitTests.pdb
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\bin\Debug\Apps4KidsWeb.Domain.Email.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.UnitTests\bin\Debug\Apps4KidsWeb.Domain.Email.pdb

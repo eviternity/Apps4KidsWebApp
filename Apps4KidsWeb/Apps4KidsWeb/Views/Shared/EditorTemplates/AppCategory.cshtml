@@ -1,0 +1,35 @@
+﻿@model int?
+
+@using System.Collections.Generic
+@using Apps4KidsWeb.Domain
+
+
+@{
+    List<SelectListItem> list = new List<SelectListItem>();
+    bool generateAllCategoriesOption = false;
+    var vdo = ViewData["GenerateAllCategoriesOption"];
+    if (vdo == null)
+    {
+        generateAllCategoriesOption = true;
+    }
+    else
+    {
+        generateAllCategoriesOption = (bool)vdo;
+    }
+    
+    
+    if (generateAllCategoriesOption)
+    {
+        list.Add(new SelectListItem() { Text = "Alle Kategorien", Value = "0"});
+    }
+    
+    foreach (KeyValuePair<int,string> item in Facade.AppCategories)
+    {
+        list.Add(new SelectListItem() { Text = item.Value, Value = item.Key.ToString() });
+    }
+   
+   
+}
+
+@Html.DropDownList("", list)
+

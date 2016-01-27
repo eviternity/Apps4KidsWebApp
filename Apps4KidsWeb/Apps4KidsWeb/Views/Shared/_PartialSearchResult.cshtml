@@ -1,0 +1,24 @@
+﻿@model Apps4KidsWeb.Domain.ISearchResult
+@using Apps4KidsWeb.Domain;
+
+<table>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Kategorie(n)</th>
+            <th>Bewertung</th>
+            <th></th>
+        </tr>
+        @foreach (IApp item in Model.Apps)
+        {
+            <tr>
+                <td>
+                    <img src="@Url.Action("GetPicture", "Picture", new { id = item.ImageIds.First() })" width="50" height="30"/>
+                </td>
+                <td>@item.Name</td>
+                <td>@string.Join(", ", item.Categories.Select(c => c.Name))</td>
+                <td>@item.AverageRating</td>
+                <td>@Html.ActionLink("Details", "Detail", new { id = item.ID })</td>
+            </tr>
+        }
+    </table>

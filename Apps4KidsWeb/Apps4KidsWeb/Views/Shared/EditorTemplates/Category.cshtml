@@ -1,0 +1,23 @@
+﻿@model int?
+
+@using System.Collections.Generic
+@using Apps4KidsWeb.Domain
+
+
+@{
+    //List<SelectListItem> list = new List<SelectListItem>();
+    //foreach (var item in Facade.AppCategories)
+    //{
+    //    list.Add(new SelectListItem() { Text = item.Value, Value = item.Key.ToString() });
+    //}
+
+
+    var list = Facade.AppCategories.Select(coo => new SelectListItem()
+    {
+        Text = coo.Value, Value = coo.Key.ToString()
+    }).ToList();
+    
+}
+
+@Html.DropDownList("", list)
+

@@ -1,0 +1,5 @@
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.Email\bin\Debug\Apps4KidsWeb.Domain.Email.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.Email\bin\Debug\Apps4KidsWeb.Domain.Email.pdb
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.Email\obj\Debug\Apps4KidsWeb.Domain.Email.dll
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.Email\obj\Debug\Apps4KidsWeb.Domain.Email.pdb
+E:\LAP\Apps4KidsWeb\Apps4KidsWeb.Domain.Email\obj\Debug\Apps4KidsWeb.Domain.Email.csprojResolveAssemblyReference.cache

@@ -1,0 +1,29 @@
+﻿@model Apps4KidsWeb.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    ViewBag.CurrentPage = "Login";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    @Html.EditorForModel()
+
+    <p>
+        <input type="submit" value="Login" />
+    </p>
+}
+
+<div>
+    @Html.ActionLink("Abbrechen", "Index", "Home")
+    @Html.ActionLink("Passwort vergessen?","PasswordForgotten")
+    @Html.ActionLink("Noch nicht registriert?","RegisterUser", "Register")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

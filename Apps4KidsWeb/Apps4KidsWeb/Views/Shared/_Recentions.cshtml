@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Apps4KidsWeb.Domain.IRecention>
+
+@using Apps4KidsWeb.Domain
+
+@{
+    IUser user = null;
+
+    if (User.Identity.IsAuthenticated)
+    {
+        user = Facade.GetUser(User.Identity.Name);
+    }
+    
+    
+    
+}
+
+@foreach (var item in Model)
+{ 
+    <div class="user_rating">
+        <p>@item.User @item.Date.ToShortDateString()</p>
+        <div>@Html.Partial("_AverageRating", Convert.ToDouble(item.Rating))</div>
+        <p>@item.Comment</p>
+        @if (user != null && item.UserID == user.ID)
+        {
+            @Ajax.ActionLink(
+                                "Löschen",
+                                "DeleteRecention",
+                                "Recention",
+                                new
+                                {
+                                    id = item.ID,
+                                    appID = item.AppID 
+                                },
+                                new AjaxOptions() 
+                                {
+                                    UpdateTargetId= "recentions",
+                                    HttpMethod = "POST",
+                                    InsertionMode = InsertionMode.Replace
+                                },
+                                null
+                            )
+            @Html.ActionLink("Bearbeiten", "AlterRecention", "Recention", new { id=item.ID, appID = item.AppID },null)
+        }
+    </div>
+}

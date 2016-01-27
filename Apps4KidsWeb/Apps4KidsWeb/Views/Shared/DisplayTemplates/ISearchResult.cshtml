@@ -1,0 +1,156 @@
+﻿@model Apps4KidsWeb.Domain.ISearchResult
+@using Apps4KidsWeb.Domain;
+@using Apps4KidsWeb.Models;
+
+@{
+    bool isAdmin = User.Identity.IsAuthenticated && Facade.GetUser(User.Identity.Name).IsAdmin;
+    string orderby;
+    if (Model.Criterea == null)
+    {
+        orderby = "Rating";
+    }
+    else
+    {
+        orderby = Model.Criterea.OrderBy;
+    }  
+}
+
+<div id="filter">
+    @Html.Partial("_Filter", new SearchCriteriaViewModel(Model.Criterea))
+</div>
+
+@if(Model.Apps.Count() > 0){
+
+<table class="enumeration">
+    <tr>
+        <th></th>
+        <th>Name
+            @if (orderby == "Name")
+            {
+                @Html.ActionLink(
+                    "V",
+                    "FilterAppsAndShowPage",
+                    new SearchCriteriaViewModel(Model.Criterea)
+                    {
+                        OrderBy = "Name_desc"
+                    },
+                    new { @class = "active" })
+            }
+            else
+            {
+                @Html.ActionLink(
+                    "Λ",
+                    "FilterAppsAndShowPage",
+                    new SearchCriteriaViewModel(Model.Criterea)
+                    {
+                        OrderBy = "Name"
+                    },
+                    new { @class = orderby == "Name_desc" ? "active" : "" })
+            }
+        </th>
+        <th>Kategorie(n)</th>
+        <th>Bewertung
+            @if (orderby == "Rating")
+            {
+                @Html.ActionLink(
+                    "Λ",
+                    "FilterAppsAndShowPage",
+                    new SearchCriteriaViewModel(Model.Criterea)
+                    {
+                        OrderBy = "Rating_asc"
+                    },
+                    new { @class = "active" })
+            }
+            else
+            { 
+                @Html.ActionLink(
+                    "V",
+                    "FilterAppsAndShowPage",
+                    new SearchCriteriaViewModel(Model.Criterea)
+                    {
+                        OrderBy = "Rating"
+                    },
+                    new { @class = orderby == "Rating_asc" ? "active" : "" })
+            }
+        </th>
+        <th>Preis
+            @if (orderby == "Price")
+            {
+                 @Html.ActionLink(
+                    "V",
+                    "FilterAppsAndShowPage",
+                    new SearchCriteriaViewModel(Model.Criterea)
+                    {
+                        OrderBy = "Price_desc"
+                    },
+                    new { @class = "active" })
+            }
+            else
+            {
+                @Html.ActionLink(
+                    "Λ",
+                    "FilterAppsAndShowPage",
+                    new SearchCriteriaViewModel(Model.Criterea)
+                    {
+                        OrderBy = "Price"
+                    },
+                    new { @class = orderby == "Price_desc" ? "active" : "" })
+            }
+        </th>
+        <th></th>
+    </tr>
+    @foreach (IApp item in Model.Apps)
+    {
+        <tr>
+            <td class="picture">
+                @if (item.ImageIds.Count() > 0)
+                {
+                    <img src="@Url.Action("GetPicture", "Picture", new { id = item.ImageIds.First() })"/>
+                }
+                else
+                {
+                    <img src="@Url.Action("GetPicture", "Picture", new { id = 0 })"/>
+                }
+            </td>
+            <td>@item.Name</td>
+            <td>@string.Join(", ", item.Categories.Select(c => c.Name))</td>
+            <td>@Html.Partial("_AverageRating", item.AverageRating)</td>
+            <td>@(item.Price == 0 ? "kostenlos" : item.Price.ToString(".00€"))</td>
+            <td>
+                @Html.ActionLink("Details", "Detail", new { id = item.ID })
+                @if (isAdmin)
+                { 
+                    @Html.ActionLink("Bearbeiten", "EditApp", "Admin", new { id = item.ID }, null)
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<div id="navigation">
+    <p>Ergebnisse: @Model.ResultAppCount / Seite @Model.Page von @Model.Pages</p>
+    <p>
+
+        @for (int i = 1; i <= Model.Pages; i++)
+        {
+            if (Model.Page != i)
+            {
+            <text>
+            @Html.ActionLink(i.ToString(), "FilterAppsAndShowPage", new SearchCriteriaViewModel(Model.Criterea) { Page = i })
+            </text>
+            }
+            else
+            {
+            <text>
+            <span class="active">@i</span>
+            </text>
+            }
+
+        }
+    </p>
+</div>
+}
+else
+{
+    <p>Keine Treffer gefunden.</p>
+}
